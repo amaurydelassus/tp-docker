@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   flutter:
     build:
       context: .
@@ -10,23 +9,18 @@ services:
       - ./:/home/project
     links:
       - node
-    networks:
-      -net
   node:
-    context: .
-    dockerfile: ./node/Dockerfile
     container_name: node
+    image: node:7.7.2-alpine
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
     volumes:
-      - ./:/home/node/app
-    links:
-      - firestore
-    networks:
-      -net
+      - ./node:/home/node/app
+    expose:
+      - "8081"
+    command: "npm start"
   firestore:
+    container_name: firestore
     image: mtlynch/firestore-emulator
-    networks:
-      -net
-
-
-networks:
-  net:
