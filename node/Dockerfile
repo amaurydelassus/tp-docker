@@ -1,5 +1,11 @@
-FROM alpine:latest
-RUN apk update
-RUN apk add apache2
-EXPOSE 80
-CMD  [ "/usr/sbin/httpd", "-D", "FOREGROUND"]
+FROM node:10.15-alpine
+
+WORKDIR "/app"
+
+COPY ./package.json ./
+RUN npm install -g nodemon \
+ && npm install
+COPY . .
+
+EXPOSE 3000
+CMD ["npm","start"]
