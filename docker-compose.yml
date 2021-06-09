@@ -18,8 +18,8 @@ services:
       - NODE_ENV=production
     volumes:
       - ./node:/home/node
-    expose:
-      - "8081"
+    ports:
+      - "8081:8081"
     command: "npm start"
   firestore:
     container_name: firestore
