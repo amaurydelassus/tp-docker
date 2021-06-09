@@ -3,10 +3,10 @@ services:
   flutter:
     build:
       context: .
-      dockerfile: ./flutter/Dockerfile
+      dockerfile: ./flutter_app/Dockerfile
     container_name: flutter
     volumes:
-      - ./:/home/project
+      - ./flutter_app:/home/project
     links:
       - node
   node:
