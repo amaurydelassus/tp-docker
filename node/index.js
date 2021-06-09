@@ -26,7 +26,6 @@ async function quickstartAddData(db) {
    snapshot.forEach((doc) => {
   console.log(doc.id, '=>', doc.data());
    donne.push(doc.data()); // 4 space indentations
-   console.log(doc)
 });
 
 }
