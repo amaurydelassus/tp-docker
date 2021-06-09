@@ -2,7 +2,8 @@ FROM ubuntu:18.04
 
 ENV ANDROID_HOME="/opt/android-sdk" \
     PATH="/opt/android-sdk/tools/bin:/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:$PATH"
-
+WORKDIR /home/flutter
+COPY flutter_app ./
 RUN apt-get update > /dev/null \
     && apt-get -y install --no-install-recommends curl git lib32stdc++6 openjdk-8-jdk-headless unzip > /dev/null \
     && apt-get --purge autoremove > /dev/null \
@@ -32,6 +33,6 @@ RUN ["apt-get", "install", "-y", "vim"]
 
 RUN ["apt-get", "install", "psmisc"]
 
-WORKDIR /home/project
+WORKDIR /home/flutter
 
 CMD tail -f /dev/null

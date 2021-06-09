@@ -1,12 +1,8 @@
 version: '3'
 services:
   flutter:
-    build:
-      context: .
-      dockerfile: ./flutter_app/Dockerfile
+    build: .
     container_name: flutter
-    volumes:
-      - ./flutter_app:/home/project
     links:
       - node
   node:
@@ -24,3 +20,6 @@ services:
   firestore:
     container_name: firestore
     image: mtlynch/firestore-emulator
+    environment:
+      - FIRESTORE_PROJECT_ID=tp-docker
+      - PORT=8200
