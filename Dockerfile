@@ -33,6 +33,4 @@ RUN ["apt-get", "install", "-y", "vim"]
 
 RUN ["apt-get", "install", "psmisc"]
 
-WORKDIR /home/flutter
-
 CMD tail -f /dev/null

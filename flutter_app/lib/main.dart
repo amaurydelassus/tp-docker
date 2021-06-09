@@ -62,10 +62,17 @@ class BodyWidgetState extends State<BodyWidget> {
   }
 
   _makeGetRequest() async {
-    final url = Uri.parse('http://localhost:8081/hello');
+    final url = Uri.parse(_localhost());
     Response response = await get(url);
     setState(() {
       serverResponse = response.body;
     });
+  }
+
+  String _localhost() {
+    if (Platform.isAndroid)
+      return 'http://10.0.2.2:3000';
+    else // for iOS simulator
+      return 'http://localhost:3000';
   }
 }
